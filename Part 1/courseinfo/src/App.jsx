@@ -28,19 +28,22 @@ const App = () => {
     )
   }
 
+  const Part = (props) => {
+    console.log('Part', props)
+    return(
+      <div>
+        <p>{props.parts.name} {props.parts.exercise}</p>
+      </div>
+    )
+  }
+
   const Content = (props) => {
     console.log('Content', props)
     return(
       <div>
-        <p>
-          {props.parts[0].name} {props.parts[0].exercise}
-        </p>
-        <p>
-          {props.parts[1].name} {props.parts[1].exercise}
-        </p>
-        <p>
-          {props.parts[2].name} {props.parts[2].exercise}
-        </p>
+        <Part parts={props.parts[0]}/>
+        <Part parts={props.parts[1]}/>
+        <Part parts={props.parts[2]}/>
       </div>
     )
   }
