@@ -1,24 +1,24 @@
 /* eslint-disable react/prop-types */
 const App = () => {
 
-  const courseinfo = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercise: 10
-      },
-      {
-        name: 'Using props to pass data',
-        exercise: 7
-      },
-      {
-        name: 'State of a component',
-        exercise: 14
-      }
-    ]
-  }
-  
+const courseinfo = {
+  name: 'Half Stack application development',
+  parts: [
+    {
+      name: 'Fundamentals of React',
+      exercise: 10
+    },
+    {
+      name: 'Using props to pass data',
+      exercise: 7
+    },
+    {
+      name: 'State of a component',
+      exercise: 14
+    }
+  ]
+}
+
   const Header = (props) => {
     console.log('Header', props)
     return(
@@ -47,7 +47,7 @@ const App = () => {
       </div>
     )
   }
-  
+
   const Total = (props) => {
     console.log('total', props)
     return(
@@ -56,7 +56,6 @@ const App = () => {
       </div>
     )
   }
-  
 
   return (
     <div>
