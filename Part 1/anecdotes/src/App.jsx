@@ -1,5 +1,34 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState } from 'react'
+
+const Button = ({onClick, text}) =>{
+  return(
+    
+      <button onClick={onClick}>{text}</button>
+    
+  )
+}
+
+const TopAnecdote = ({maxVotes, anecdotes, maxVotesIndex, vote}) =>{
+  if(maxVotes === 0){
+    return(
+      <div>
+        <h1>Anecdote with most votes!</h1>
+        <p>No Votes Yet!</p>
+      </div>
+    )
+  } else{
+    return(
+      <div>
+        <h1>Anecdote with most votes!</h1>
+        {anecdotes[maxVotesIndex]}
+        {<p>This has {vote[maxVotesIndex]} votes</p>}
+      </div>
+      
+    )
+  }
+}
 
 const App = () => {
   const anecdotes = [
@@ -14,6 +43,7 @@ const App = () => {
   ]
 
   const [selected, setSelected] = useState(0)
+  const [vote, setVote] = useState(Array(anecdotes.length).fill(0))
   console.log('selected anecdote', selected)
 
   const randomAnecdote = () =>{
@@ -23,10 +53,23 @@ const App = () => {
     setSelected(randomIndex)
   }
 
+  const triggerVote = () =>{
+    const voteCopy = [...vote]
+    voteCopy[selected] += 1
+    setVote(voteCopy)
+  }
+
+  const maxVotes = Math.max(...vote)
+  const maxVotesIndex = vote.indexOf(maxVotes)
+  console.log(maxVotes)
   return (
     <div>
+      <h1>Anecdote of the day!</h1>
       {anecdotes[selected]}
-      <button onClick={randomAnecdote}>Next Anecdote!</button>
+      <p>This anecdote has {vote[selected]} votes.</p>
+      <Button onClick={triggerVote} text='Vote' />
+      <Button onClick={randomAnecdote} text='Next Anecdote!' />
+      <TopAnecdote maxVotes={maxVotes} anecdotes={anecdotes} maxVotesIndex={maxVotesIndex} vote={vote}/>
     </div>
   )
 }
